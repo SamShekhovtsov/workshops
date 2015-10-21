@@ -4,6 +4,6 @@ class Product < ActiveRecord::Base
   has_many :reviews
 
   validates :title, presence:true
-  validates :price, presence:true
+  validates :price, presence:true, numericality: { only_integer: true }
   validates :description, presence:true
 end

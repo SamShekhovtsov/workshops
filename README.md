@@ -43,4 +43,4 @@ Fixing user registration and authentication
 
 16. Fill `seeds.rb` with 5 accounts for user and one admin account to login and example category with products and reviews.
 
-17. Make sure your project is available on Heroku with **seeds data**.
+17. Make sure your project is available on Heroku with **seeds data**. - test deploying to Heroku

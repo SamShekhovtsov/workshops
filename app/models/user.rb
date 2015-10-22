@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :products
 
-  validates :email, presence:true
+  validates :firstname, :lastname, :email, presence:true
 end

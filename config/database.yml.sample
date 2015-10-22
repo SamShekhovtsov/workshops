@@ -6,6 +6,10 @@ connection: &connection
   username: workshops
   password:
 
+production:
+  <<: *connection
+  database: workshops
+
 development:
   <<: *connection
   database: workshops_development

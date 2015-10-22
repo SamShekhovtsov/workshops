@@ -5,6 +5,8 @@ Fixes of the requested issues:
 Deployed and lunched application locally
 Fixing user registration and authentication
 
+Project hosting: https://workshops-sem.herokuapp.com
+
 ### Issues to solve:
 
 1. There are a few missing fields on the `User` model. Make sure `spec/models/user_spec.rb passes.`

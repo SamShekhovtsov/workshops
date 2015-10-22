@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :firstname, :lastname) }
   end
+
+  def require_admin
+    redirect_to(new_user_session_path, notice: "You have to be admin to perform that action") unless current_user.admin?
+  end
 end

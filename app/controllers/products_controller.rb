@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+
   expose(:category)
   expose(:products)
   expose(:product)
@@ -15,10 +17,24 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if product.user_id != current_user.id
+      flash[:error] = 'You are not allowed to edit this product.'
+      redirect_to category_product_url(category, product)
+    elsif Processingitem.exists?(item_type: 'product', item_id: product.id)
+      redirect_to category_products_path(category, product), notice: 'This product is pending edit in other session.'
+    else
+      Processingitem.create(item_type: 'product', item_id: product.id)
+    end
+  end
+
+  def back  
+    Processingitem.destroy_all(item_type: "product", item_id: product.id)
+    redirect_to category_products_path(category, product)
   end
 
   def create
     self.product = Product.new(product_params)
+    product.user_id = current_user.id
 
     if product.save
       category.products << product
@@ -29,10 +45,15 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if self.product.update(product_params)
-      redirect_to category_product_url(category, product), notice: 'Product was successfully updated.'
+    if product.user_id != current_user.id
+      flash[:error] = 'You are not allowed to edit this product.'
+      redirect_to category_product_url(category, product)
+    elsif self.product.update(product_params)
+      Processingitem.destroy_all(item_type: "product", item_id: product.id)
+      redirect_to category_product_path(category, product), notice: 'Product was successfully updated.'
     else
-      render action: 'edit'
+      #render action: 'edit'
+      redirect_to category_product_url(category, product)
     end
   end
 

@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe ProductsController do
   let(:category)      { create(:category) }
+  let(:user) { create(:user) }
   let(:valid_attributes) do
     {
       title: 'MyString',
       description: 'Some description',
       price: 2.5,
       category_id: category.id,
+      user_id: user.id
     }
   end
 

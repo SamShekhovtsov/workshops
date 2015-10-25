@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :categories do
     resources :products do
-      resources :reviews
+    	post :back
+      	resources :reviews
     end
   end
 

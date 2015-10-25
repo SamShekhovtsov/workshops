@@ -1,7 +1,9 @@
-%h1 Editing product
+.col-md-6.col-md-offset-3.panel.panel-default
+  .panel-body
+    %h2 Editing product
 
-= render 'form'
+    = render 'form'
 
-= link_to 'Show', category_product_path(category, product)
-\|
-= link_to 'Back', category_product_back_path(category, product), method: :post, data: { confirm: 'Are you sure? Your changes are not to be saved.' }
+    = link_to 'Show', category_product_path(category, product)
+    \|
+    = link_to 'Back', category_product_back_path(category, product), method: :post, data: { confirm: 'Are you sure? Your changes are not to be saved.' }

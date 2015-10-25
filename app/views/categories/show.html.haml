@@ -4,10 +4,14 @@
     %p
       %b Name:
       = category.name
+      \|
+      = link_to 'Change', edit_category_path(category)
 
     %p
+      Related products: 
       - category.products.each do |product|
-        = product.title
+        = link_to product.title, category_product_path(product.category, product) 
+        \|  
     %p 
       = link_to 'Products list', category_products_path(category)
     %p

@@ -23,9 +23,9 @@
           - else
             = link_to "Sign up", new_user_registration_path, class: 'navbar-link' |
             = link_to "Login", new_user_session_path, class: 'navbar-link'
-    .container-fluid
+    .container
+      = flash_messages if show_layout_flash?
       <!--%p.notice #{notice}-->
       <!--%p.alert #{alert}-->
       .row
-        .col-lg-12
-          = yield
+        = yield
